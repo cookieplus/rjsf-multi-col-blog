@@ -16,9 +16,8 @@ import {
     getUiOptions,
     titleId,
 } from '@rjsf/utils';
-import Col from 'antd/lib/col';
-import Row from 'antd/lib/row';
-import { ConfigConsumer, ConfigConsumerProps } from 'antd/lib/config-provider/context';
+import {Col, Row, Space} from "antd";
+import {ConfigConsumer, ConfigConsumerProps} from "antd/es/config-provider";
 
 const DESCRIPTION_COL_STYLE = {
     paddingBottom: '8px',
@@ -107,11 +106,16 @@ export default function ObjectFieldTemplate<
         return defaultColSpan;
     };
 
+
+    if (uiSchema?.['ui:grid'] && Array.isArray(uiSchema['ui:grid'])) {
+        console.log(uiSchema);
+    }
     return (
         <ConfigConsumer>
             {(configProps: ConfigConsumerProps) => {
                 console.log('config props are')
                 console.log(configProps)
+                console.log("idSchema.$id", idSchema.$id);
                 const { getPrefixCls } = configProps;
                 const prefixCls = getPrefixCls('form');
                 const labelClsBasic = `${prefixCls}-item-label`;
@@ -124,7 +128,9 @@ export default function ObjectFieldTemplate<
                 return (
                     <fieldset id={idSchema.$id}>
                         <Row gutter={rowGutter}>
-                            {title && (
+                            {/* Disble title */}
+                            {title && false && (
+                                //     12
                                 <Col className={labelColClassName} span={24}>
                                     <TitleFieldTemplate
                                         id={titleId<T>(idSchema)}
@@ -159,7 +165,7 @@ export default function ObjectFieldTemplate<
                                                 return <></>
                                             }
                                         })
-                                    
+
                                 })
                                 : properties
                                     .filter((e) => !e.hidden)

@@ -1,0 +1,30 @@
+{
+	"triggerSource": "submit",
+	"formData": {
+		"paramSection": {
+			"input": {
+				"selectImageSet": "aaa",
+				"listOfImageToProcess": "bbb",
+				"selectPolygonSet": "ccc"
+			},
+			"qcParameters": {
+				"listOfImageToQC": "dddd"
+			},
+			"mainParameters": {
+				"color": {
+					"brightness": -4,
+					"bw": 3,
+					"contrast": 55
+				}
+			},
+			"output": {
+				"outputToSubFolder": 1,
+				"outputImageSetName": "AAA"
+			}
+		},
+		"qcSection": {
+			"trainTrackImage": "BBB",
+			"processingWindowLimit": "CCCC"
+		}
+	}
+}

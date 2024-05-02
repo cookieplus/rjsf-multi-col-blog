@@ -1,0 +1,34 @@
+{
+	"triggerSource": "submit",
+	"formData": {
+		"paramSection": {
+			"inputData": {
+				"inputImageSet": "AAA",
+				"processImageSet": "Landscape",
+				"inputPolygonSet": "BBB",
+				"qcImageSet": "CCC"
+			},
+			"mainParameters": {
+				"imageColorControl": {
+					"brightness": 111,
+					"saturation": 222,
+					"contrast": 333,
+					"hue": 444
+				},
+				"subImageBorderControl": {
+					"windowXMin": 555,
+					"windowYMin": 666,
+					"windowXMax": 777,
+					"windowYMax": 888
+				}
+			},
+			"outputData": {
+				"outputImageSet": 7
+			}
+		},
+		"qcSection": {
+			"trainTrackImage": "EEE",
+			"processingWindowLimit": "FFF"
+		}
+	}
+}

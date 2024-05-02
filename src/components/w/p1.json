@@ -1,0 +1,35 @@
+{
+	"triggerSource": "submit",
+	"formData": {
+		"qcSection": {
+			"trainTrackImage": "train.jpg",
+			"processingWindowLimit": "aaa",
+			"trainTrackImageCropped": "bbb"
+		},
+		"paramSection": {
+			"left": {
+				"inputImageSet": "ccc",
+				"inputPolygonSet": "ddd"
+			},
+			"right": {
+				"processImageSet": "Human",
+				"qcImageSet": "eee"
+			},
+			"imageColorControl": {
+				"brightness": 80,
+				"contrast": 90
+			},
+			"subImageBorderControl": {
+				"borderXMin": 100,
+				"borderYMin": 101,
+				"borderColor": 102,
+				"borderXMax": 103,
+				"borderYMax": 104,
+				"borderThickness": 105
+			},
+			"outputImageSet": {
+				"outputImageSet": "new_train"
+			}
+		}
+	}
+}

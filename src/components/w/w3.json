@@ -1,0 +1,353 @@
+{
+	"id": "flow3",
+	"api": [
+		{
+			"name": "refreshQCWidget1",
+			"func": "imagemani.py",
+			"type": "QC"
+		},
+		{
+			"name": "imageManiExec",
+			"func": "imagemani.py",
+			"type": "Execution"
+		}
+	],
+	"version": "1.0",
+	"schema": {
+		"title": "Image Processing",
+		"type": "object",
+		"properties": {
+			"qcSection": {
+				"type": "object",
+				"title": "qcSection",
+				"properties": {
+					"sharpnessTest": {
+						"type": "object",
+						"title": "sharpnessTest",
+						"properties": {
+							"trainTrackImage": {
+								"type": "string"
+							},
+							"processingWindowLimit": {
+								"type": "string"
+							}
+						}
+					},
+					"saturationTest": {
+						"type": "object",
+						"title": "saturationTest",
+						"properties": {
+							"trainTrackImage": {
+								"type": "string"
+							},
+							"processingWindowLimit": {
+								"type": "string"
+							}
+						}
+					}
+				}
+			},
+			"paramSection": {
+				"type": "object",
+				"properties": {
+					"input": {
+						"type": "object",
+						"title": "Input data",
+						"properties": {
+							"selectImageSet": {
+								"type": "string",
+								"title": "Select image set"
+							},
+							"listOfImageToProcess": {
+								"type": "string",
+								"title": "List of images to Process"
+							},
+							"selectPolygonSet": {
+								"type": "string",
+								"title": "Select polygon set"
+							}
+						}
+					},
+					"qcParameters": {
+						"type": "object",
+						"title": "QC parameter",
+						"properties": {
+							"listOfImageToQC": {
+								"type": "string",
+								"title": "List of images to QC"
+							}
+						}
+					},
+					"mainParameters": {
+						"type": "object",
+						"title": "Main Parameters",
+						"properties": {
+							"color": {
+								"type": "object",
+								"title": "Color",
+								"properties": {
+									"brightness": {
+										"type": "integer",
+										"minimum": -50,
+										"maximum": 50,
+										"title": "Brightness"
+									},
+									"bw": {
+										"type": "number",
+										"title": "B/W?",
+										"oneOf": [
+											{
+												"const": 1,
+												"title": "Black and White"
+											},
+											{
+												"const": 2,
+												"title": "Sepia"
+											},
+											{
+												"const": 3,
+												"title": "Full Color"
+											}
+										]
+									},
+									"autoButton": {
+										"type": "boolean"
+									},
+									"contrast": {
+										"type": "number",
+										"title": "Contrast"
+									}
+								}
+							}
+						}
+					},
+					"output": {
+						"type": "object",
+						"title": "Output data",
+						"properties": {
+							"outputToSubFolder": {
+								"type": "number",
+								"title": "Output to Sub folder",
+								"oneOf": [
+									{
+										"const": 1,
+										"title": "Yes"
+									},
+									{
+										"const": 2,
+										"title": "No"
+									}
+								]
+							},
+							"outputImageSetName": {
+								"type": "string",
+								"title": "Output image set name"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:grid": [
+			{
+				"paramSection": 8,
+				"qcSection": 16
+			}
+		],
+		"qcSection": {
+			"ui:grid": [
+				{
+					"sharpnessTest": 24
+				},
+				{
+					"saturationTest": 24
+				}
+			],
+			"ui:options": {
+				"label": true,
+				"align": false,
+				"col": 24,
+				"tabs": true
+			},
+			"sharpnessTest": {
+				"ui:options": {
+					"label": true,
+					"align": false,
+					"col": 24
+				},
+				"trainTrackImage": {
+					"ui:options": {
+						"label": true,
+						"align": false,
+						"col": 24
+					}
+				},
+				"processingWindowLimit": {
+					"ui:options": {
+						"label": true,
+						"align": false,
+						"col": 24,
+						"grid": true
+					}
+				}
+			},
+			"saturationTest": {
+				"ui:options": {
+					"label": true,
+					"align": false,
+					"col": 24
+				},
+				"trainTrackImage": {
+					"ui:options": {
+						"label": true,
+						"align": false,
+						"col": 24
+					}
+				},
+				"processingWindowLimit": {
+					"ui:options": {
+						"label": true,
+						"align": false,
+						"col": 24,
+						"grid": true
+					}
+				}
+			}
+		},
+		"paramSection": {
+			"ui:grid": [
+				{
+					"input": 24
+				},
+				{
+					"qcParameters": 24
+				},
+				{
+					"mainParameters": 24
+				},
+				{
+					"output": 24
+				}
+			],
+			"ui:options": {
+				"label": true,
+				"align": false
+			},
+			"input": {
+				"ui:grid": [
+					{
+						"selectImageSet": 24
+					},
+					{
+						"listOfImageToProcess": 24
+					},
+					{
+						"selectPolygonSet": 24
+					}
+				],
+				"ui:options": {
+					"label": true,
+					"align": false,
+					"accordion": true
+				}
+			},
+			"qcParameters": {
+				"ui:grid": [
+					{
+						"listOfImageToQC": 24
+					}
+				],
+				"ui:options": {
+					"label": true,
+					"align": false,
+					"accordion": true
+				}
+			},
+			"mainParameters": {
+				"ui:grid": [
+					{
+						"color": 24
+					}
+				],
+				"ui:options": {
+					"label": true,
+					"align": false,
+					"accordion": true
+				},
+				"color": {
+					"ui:grid": [
+						{
+							"brightness": 20,
+							"autoButton": 4
+						},
+						{
+							"bw": 24
+						},
+						{
+							"contrast": 24
+						}
+					],
+					"ui:options": {
+						"label": true,
+						"align": false
+					},
+					"brightness": {
+						"ui:widget": "range",
+						"ui:options": {
+							"col": 8,
+							"trigger": "onChangeBrightness"
+						}
+					},
+					"bw": {
+						"ui:widget": "radio",
+						"ui:options": {
+							"col": 8
+						}
+					},
+					"autoButton": {
+						"ui:widget": "autoButton",
+						"ui:options": {
+							"label": false,
+							"triggerName": "autoBrightness"
+						}
+					},
+					"contrast": {
+						"ui:options": {
+							"col": 8
+						}
+					}
+				}
+			},
+			"output": {
+				"ui:grid": [
+					{
+						"outputToSubFolder": 24
+					},
+					{
+						"outputImageSetName": 24
+					}
+				],
+				"ui:options": {
+					"label": true,
+					"align": false,
+					"col": 24,
+					"grid": true,
+					"accordion": true
+				},
+				"outputToSubFolder": {
+					"ui:widget": "radio"
+				}
+			}
+		},
+		"root": {
+			"ui:options": {
+				"label": false,
+				"align": true,
+				"col": 24,
+				"grid": true
+			}
+		}
+	}
+}

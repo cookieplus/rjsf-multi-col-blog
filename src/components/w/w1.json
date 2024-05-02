@@ -1,0 +1,238 @@
+{
+	"id": "flow1",
+	"api": [
+		{
+			"name": "refreshQCWidget1",
+			"func": "imagemani.py",
+			"type": "QC"
+		},
+		{
+			"name": "imageManiExec",
+			"func": "imagemani.py",
+			"type": "Execution"
+		}
+	],
+	"version": "1.0",
+	"schema": {
+		"title": "Image Processing",
+		"type": "object",
+		"properties": {
+			"qcSection": {
+				"type": "object",
+				"properties": {
+					"trainTrackImage": {
+						"type": "string"
+					},
+					"processingWindowLimit": {
+						"type": "string"
+					},
+					"trainTrackImageCropped": {
+						"type": "string"
+					}
+				}
+			},
+			"paramSection": {
+				"type": "object",
+				"properties": {
+					"left": {
+						"type": "object",
+						"properties": {
+							"inputImageSet": {
+								"type": "string",
+								"title": "Input image set"
+							},
+							"inputPolygonSet": {
+								"type": "string",
+								"title": "Input polygon set"
+							}
+						}
+					},
+					"right": {
+						"type": "object",
+						"properties": {
+							"processImageSet": {
+								"type": "string",
+								"title": "Process image set",
+								"enum": [
+									"House",
+									"Human",
+									"Landscape"
+								]
+							},
+							"qcImageSet": {
+								"type": "string",
+								"title": "QC image set"
+							}
+						}
+					},
+					"imageColorControl": {
+						"type": "object",
+						"title": "Image Color Control",
+						"properties": {
+							"brightness": {
+								"type": "number",
+								"title": "Brightness"
+							},
+							"contrast": {
+								"type": "number",
+								"title": "Contrast"
+							}
+						}
+					},
+					"subImageBorderControl": {
+						"type": "object",
+						"title": "Sub-Image Border Control",
+						"properties": {
+							"borderXMin": {
+								"type": "number",
+								"title": "Border x min"
+							},
+							"borderYMin": {
+								"type": "number",
+								"title": "Border y min"
+							},
+							"borderColor": {
+								"type": "number",
+								"title": "Border color"
+							},
+							"borderXMax": {
+								"type": "number",
+								"title": "Border x max"
+							},
+							"borderYMax": {
+								"type": "number",
+								"title": "Border y max"
+							},
+							"borderThickness": {
+								"type": "number",
+								"title": "Border thickness"
+							}
+						}
+					},
+					"outputImageSet": {
+						"type": "object",
+						"properties": {
+							"outputImageSet": {
+								"type": "string",
+								"title": "Output image set"
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"uiSchema": {
+		"ui:grid": [
+			{
+				"qcSection": 24
+			},
+			{
+				"paramSection": 24
+			}
+		],
+		"qcSection": {
+			"ui:grid": [
+				{
+					"trainTrackImage": 8,
+					"processingWindowLimit": 8,
+					"trainTrackImageCropped": 8
+				}
+			],
+			"ui:options": {
+				"label": true,
+				"align": false,
+				"col": 24,
+				"grid": true
+			}
+		},
+		"paramSection": {
+			"ui:grid": [
+				{
+					"left": 9,
+					"right": 15
+				},
+				{
+					"imageColorControl": 9,
+					"subImageBorderControl": 15
+				},
+				{
+					"outputImageSet": 9
+				}
+			],
+			"ui:options": {
+				"label": true,
+				"align": false
+			},
+			"left": {
+				"ui:options": {
+					"label": false,
+					"col": 9
+				}
+			},
+			"right": {
+				"ui:options": {
+					"label": false,
+					"grid": false,
+					"col": 15
+				}
+			},
+			"imageColorControl": {
+				"ui:options": {
+					"label": true,
+					"align": false,
+					"col": 9
+				},
+				"ui:grid": [
+					{
+						"brightness": 24
+					},
+					{
+						"contrast": 24
+					}
+				]
+			},
+			"subImageBorderControl": {
+				"ui:options": {
+					"label": true,
+					"align": false,
+					"col": 15,
+					"grid": true
+				},
+				"ui:grid": [
+					{
+						"borderXMin": 8,
+						"borderYMin": 8,
+						"borderColor": 8
+					},
+					{
+						"borderXMax": 8,
+						"borderYMax": 8,
+						"borderThickness": 8
+					}
+				]
+			},
+			"outputImageSet": {
+				"ui:grid": [
+					{
+						"outputImageSet": 24
+					}
+				],
+				"ui:options": {
+					"label": false,
+					"align": false,
+					"col": 24,
+					"grid": true
+				}
+			}
+		},
+		"root": {
+			"ui:options": {
+				"label": false,
+				"align": true,
+				"col": 24,
+				"grid": true
+			}
+		}
+	}
+}

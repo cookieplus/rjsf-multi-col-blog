@@ -1,0 +1,20 @@
+{
+	"flows": [
+		{
+			"flow": "flow1",
+			"status": "executed"
+		},
+		{
+			"flow": "flow2",
+			"status": "running"
+		},
+		{
+			"flow": "flow3",
+			"status": "disabled"
+		},
+		{
+			"flow": "flow4",
+			"status": "unexecuted"
+		}
+	]
+}

@@ -5,6 +5,7 @@ import {ReactElement} from "react";
 import ObjectFieldTemplate from "./ObjectFieldTemplate";
 import {Col, Row, Space} from "antd";
 import {IChangeEvent} from "@rjsf/core/src/components/Form";
+import QCWidget from "./QCWidget";
 
 // Tạo custom widget cho nút "Auto"
 const AutoButtonWidget = ({ }) => {
@@ -79,7 +80,7 @@ const CustomFieldTemplate: React.FC<any> = (props) => {
 			</div>
 	);
 };
-const BasicForm: () => ReactElement = () => {
+const FormWithQC: () => ReactElement = () => {
 	let workflow: RJSFSchema = {
 		title: "Image Processing",
 		// description: "Workflow demo form",
@@ -95,12 +96,7 @@ const BasicForm: () => ReactElement = () => {
 					inputPolygonSet: {
 						type: "string",
 						title: "Input polygon set"
-					}
-				}
-			},
-			right: {
-				type: "object",
-				properties: {
+					},
 					processImageSet: {
 						type: "string",
 						title: "Process image set",
@@ -109,70 +105,77 @@ const BasicForm: () => ReactElement = () => {
 					qcImageSet: {
 						type: "string",
 						title: "QC image set"
+					},
+					imageColorControl: {
+						type: "object",
+						title: "Image Color Control",
+						// description: "Image Color Control ddddddd ddddddd ddddddd ddddddd ddddddd ",
+						properties: {
+							brightness: {
+								type: "number",
+								title: "Brightness"
+							},
+							// Display auto button
+							autoBrightness: {
+								type: "number",
+							},
+							contrast: {
+								type: "number",
+								title: "Contrast"
+							}
+						}
+					},
+					subImageBorderControl: {
+						type: "object",
+						title: "Sub-Image Border Control",
+						// description: "Sub-Image Border Control",
+						properties: {
+							borderXMin: {
+								type: "number",
+								title: "Border x min"
+							},
+							borderYMin: {
+								type: "number",
+								title: "Border y min"
+							},
+							borderColor: {
+								type: "number",
+								title: "Border color"
+							},
+							borderXMax: {
+								type: "number",
+								title: "Border x max"
+							},
+							borderYMax: {
+								type: "number",
+								title: "Border y max"
+							},
+							borderThickness: {
+								type: "number",
+								title: "Border thickness"
+							},
+						}
+					},
+					outputImageSet: {
+						type: "string",
+						title: "Output image set"
+					},
+				}
+			},
+			right: {
+				type: "object",
+				properties: {
+					qcWidget: {
+						type: "string",
+						title: "QCWidget"
 					}
 				}
 			},
-			imageColorControl: {
-				type: "object",
-				title: "Image Color Control",
-				// description: "Image Color Control ddddddd ddddddd ddddddd ddddddd ddddddd ",
-				properties: {
-					brightness: {
-						type: "number",
-						title: "Brightness"
-					},
-					// Display auto button
-					autoBrightness: {
-						type: "number",
-					},
-					contrast: {
-						type: "number",
-						title: "Contrast"
-					}
-				}
-			},
-			subImageBorderControl: {
-				type: "object",
-				title: "Sub-Image Border Control",
-				// description: "Sub-Image Border Control",
-				properties: {
-					borderXMin: {
-						type: "number",
-						title: "Border x min"
-					},
-					borderYMin: {
-						type: "number",
-						title: "Border y min"
-					},
-					borderColor: {
-						type: "number",
-						title: "Border color"
-					},
-					borderXMax: {
-						type: "number",
-						title: "Border x max"
-					},
-					borderYMax: {
-						type: "number",
-						title: "Border y max"
-					},
-					borderThickness: {
-						type: "number",
-						title: "Border thickness"
-					},
-				}
-			},
-			outputImageSet: {
-				type: "string",
-				title: "Output image set"
-			}
 		}
 	};
 	let uiSchema: UiSchema = {
 		"ui:grid": [
-			{left: 9, right: 15},
-			{imageColorControl: 9, subImageBorderControl: 15},
-			{outputImageSet: 9}
+			{left: 16, right: 8},
 		],
 		root: {
 			"ui:options": {
@@ -184,46 +187,67 @@ const BasicForm: () => ReactElement = () => {
 			"ui:options": {
 				label: false,
 				col: 9
-			}
+			},
+			"ui:grid": [
+				{inputImageSet: 12, processImageSet: 12},
+				{inputPolygonSet: 12, qcImageSet: 12},
+				{imageColorControl: 9, subImageBorderControl: 15
+					// , qcWidget: 12
+				},
+				{outputImageSet: 9},
+			],
+			imageColorControl: {
+				"ui:options": {
+					label: true,
+					align: false,
+					col: 9
+				},
+				"ui:grid": [
+					{brightness: 20, autoBrightness: 4},
+					{contrast: 20}
+				],
+				autoBrightness: {
+					"ui:widget": "number",
+					"ui:options": {
+						// Tùy chỉnh giao diện cho input number
+					},
+					"ui:field": AutoButtonWidget
+				}
+			},
+			subImageBorderControl: {
+				"ui:options": {label: true, align: false, col: 15, grid: true},
+				"ui:grid": [
+					{borderXMin: 8, borderYMin: 8, borderColor: 8},
+					{borderXMax: 8, borderYMax: 8, borderThickness: 8}
+				]
+			},
+			outputImageSet: {
+				"ui:options": {label: true, align: true, col: 24, grid: true},
+			},
 		},
 		right: {
 			"ui:options": {
 				label: false,
 				grid: false,
 				col: 15
-			}
-		},
-		imageColorControl: {
-			"ui:options": {
-				label: true,
-				align: false,
-				col: 9
 			},
-			"ui:grid": [
-				{brightness: 20, autoBrightness: 4},
-				{contrast: 20}
-			],
-			autoBrightness: {
-				"ui:widget": "number",
-				"ui:options": {
-					// Tùy chỉnh giao diện cho input number
-				},
-				"ui:field": AutoButtonWidget
+			qcWidget: {
+				"ui:field": QCWidget,
+				"ui:options": {label: false, align: true, col: 24}
 			}
 		},
-		subImageBorderControl: {
-			"ui:options": {label: true, align: false, col: 15, grid: true},
-			"ui:grid": [
-				{borderXMin: 8, borderYMin: 8, borderColor: 8},
-				{borderXMax: 8, borderYMax: 8, borderThickness: 8}
-			]
+	};
+
+	const initialData = {
+		"left": {
+			"qcImageSet": "/img/road.jpg",
+			"subImageBorderControl": {
+				"borderYMin": -2,
+				"borderXMax": 1
+			}
 		},
-		outputImageSet: {
-			"ui:options": {label: true, align: true, col: 24, grid: true},
-			// "ui:grid": [
-			// 	{borderXMin: 8, borderYMin: 8, borderColor: 8},
-			// 	{borderXMax: 8, borderYMax: 8, borderThickness: 8}
-			// ]
+		right: {
+			qcWidget: "/img/road.jpg"
 		}
 	};
 
@@ -246,4 +270,4 @@ const BasicForm: () => ReactElement = () => {
 	);
 };
 
-export default BasicForm;
+export default FormWithQC;
